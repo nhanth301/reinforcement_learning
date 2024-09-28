@@ -74,7 +74,7 @@ def get_path(policy_grid,n,m,x,y):
             break
     return actions
 
-def evaluation_policy_step(grid,n,m,epsilon,gamma,policy_grid=None):
+def evaluation_policy_step(grid,n,m,r,epsilon,gamma,policy_grid=None):
     while True:
         flag = False
         for i in range(n):
@@ -101,7 +101,7 @@ n = 5
 m = 5
 r = -1
 gamma = 0.9
-epsilon = 0.001
+epsilon = 0.0001
 grid = create_grid(n,m)
 policy_grid = get_policy_grid(grid,n,m)
 print_grid(grid)
@@ -110,7 +110,7 @@ print_grid(policy_grid,policy=True)
 print()
 n_loops = 100
 for _ in range(n_loops):
-    grid = evaluation_policy_step(grid,n,m,epsilon,gamma,policy_grid)
+    grid = evaluation_policy_step(grid,n,m,r,epsilon,gamma,policy_grid)
     policy_grid = control_policy_step(grid,n,m)
     print_grid(grid)
     print()
